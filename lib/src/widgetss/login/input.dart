@@ -40,7 +40,7 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
       if (username.text.toLowerCase() == 'dev'.toLowerCase() &&
           password.text.toLowerCase() == 'dev'.toLowerCase()) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('token', 'test_token');
+        await prefs.setString('token', 'test_token');
         username.clear();
         password.clear();
         Navigator.pushNamedAndRemoveUntil(
@@ -66,11 +66,12 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
       children: [
         Container(
           width: 550.0,
-          margin: const EdgeInsets.all(7.0),
+          height: 70.0,
+          margin: const EdgeInsets.all(10.0),
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
           decoration: BoxDecoration(
             color: const Color.fromARGB(25, 110, 110, 110),
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(18.0),
           ),
           child: TextFormField(
             style: const TextStyle(fontSize: 24.0),
@@ -93,11 +94,12 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
         ),
         Container(
           width: 550.0,
-          margin: const EdgeInsets.all(7.0),
+          height: 70.0,
+          margin: const EdgeInsets.all(10.0),
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
           decoration: BoxDecoration(
             color: const Color.fromARGB(25, 110, 110, 110),
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(18.0),
           ),
           child: TextFormField(
             style: const TextStyle(fontSize: 24.0),
@@ -126,11 +128,11 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
         ),
         const SizedBox(height: 10.0),
         Container(
-          height: 55.0,
+          height: 70.0,
           width: 550.0,
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 44, 75, 190),
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(18.0),
           ),
           child: TextButton(
               onPressed: login,

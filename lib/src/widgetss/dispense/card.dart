@@ -85,7 +85,7 @@ class _CardListState extends State<CardList> {
                 return Container(
                   padding: const EdgeInsets.all(16.0),
                   // width: 700.0,
-                  height: 300.0,
+                  height: 320.0,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -100,17 +100,33 @@ class _CardListState extends State<CardList> {
                       Text(
                         'No: ${box.toString()}',
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 24,
                         ),
                       ),
                       const SizedBox(height: 20.0),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          ElevatedButton(
-                            onPressed: remove,
-                            onLongPress: remove,
-                            child: const Icon(Icons.remove),
+                          Container(
+                            margin: const EdgeInsets.only(top: 15.0),
+                            width: 80.0,
+                            height: 60.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(18.0),
+                              border: Border.all(
+                                  color: const Color.fromARGB(255, 44, 75, 190),
+                                  width: 2.5),
+                            ),
+                            child: TextButton(
+                              onPressed: remove,
+                              onLongPress: remove,
+                              child: const Icon(
+                                size: 24.0,
+                                Icons.remove,
+                                color: Color.fromARGB(255, 44, 75, 190),
+                              ),
+                            ),
                           ),
                           Container(
                             width: 50.0,
@@ -118,23 +134,43 @@ class _CardListState extends State<CardList> {
                             child: Text(
                               '$_quantity',
                               style: const TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
+                                fontSize: 36,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                          ElevatedButton(
-                            onPressed: add,
-                            onLongPress: add,
-                            child: const Icon(Icons.add),
+                          Container(
+                            margin: const EdgeInsets.only(top: 15.0),
+                            width: 80.0,
+                            height: 60.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(18.0),
+                              border: Border.all(
+                                  color: const Color.fromARGB(255, 44, 75, 190),
+                                  width: 2.5),
+                            ),
+                            child: TextButton(
+                              onPressed: add,
+                              onLongPress: add,
+                              child: const Icon(
+                                size: 24.0,
+                                Icons.add,
+                                color: Color.fromARGB(255, 44, 75, 190),
+                              ),
+                            ),
                           ),
                         ],
                       ),
+                      const SizedBox(
+                        height: 30.0,
+                      ),
                       Container(
-                        margin: const EdgeInsets.only(top: 15.0),
                         width: 500.0,
-                        height: 55.0,
+                        height: 60.0,
                         decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 44, 75, 190),
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(18.0),
                         ),
                         child: TextButton(
                           style: ElevatedButton.styleFrom(
@@ -182,7 +218,7 @@ class _CardListState extends State<CardList> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.network(
+                    Image.asset(
                       medicine.images!,
                       width: 120.0,
                       height: 150.0,

@@ -9,7 +9,7 @@ class LogoutNavHome extends StatelessWidget {
   Widget build(BuildContext context) {
     void logout() async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.remove('token');
+      await prefs.remove('token');
       // ignore: use_build_context_synchronously
       Navigator.pop(context, 'OK');
       Navigator.pushNamedAndRemoveUntil(
