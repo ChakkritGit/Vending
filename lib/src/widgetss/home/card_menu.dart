@@ -62,7 +62,7 @@ class CardMenuHome extends StatelessWidget {
                   children: [
                     Icon(icons[index],
                         size: 40.0,
-                        color: const Color.fromARGB(180, 90, 56, 253)),
+                        color: const Color.fromARGB(180, 44, 75, 190)),
                     const SizedBox(height: 10.0),
                     Text(
                       menuNames[index],

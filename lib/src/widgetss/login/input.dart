@@ -37,7 +37,8 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
 
   void login() async {
     if (widget.formKey.currentState!.validate()) {
-      if (username.text == 'dev' && password.text == 'dev') {
+      if (username.text.toLowerCase() == 'dev'.toLowerCase() &&
+          password.text.toLowerCase() == 'dev'.toLowerCase()) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('token', 'test_token');
         username.clear();
@@ -128,7 +129,7 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
           height: 55.0,
           width: 550.0,
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 90, 56, 253),
+            color: const Color.fromARGB(255, 44, 75, 190),
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: TextButton(

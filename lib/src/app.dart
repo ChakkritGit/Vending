@@ -104,12 +104,12 @@ class _AppState extends State<App> {
       title: 'Vending Machine',
       theme: ThemeData(
         brightness: Brightness.light,
-        colorSchemeSeed: const Color.fromARGB(255, 24, 21, 160),
+        colorSchemeSeed: const Color.fromARGB(255,44, 75, 190),
         fontFamily: 'Anuphan',
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        colorSchemeSeed: const Color.fromARGB(255, 24, 21, 160),
+        colorSchemeSeed: const Color.fromARGB(255, 44, 75, 190),
         fontFamily: 'Anuphan',
       ),
     );

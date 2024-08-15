@@ -133,7 +133,7 @@ class _CardListState extends State<CardList> {
                         width: 500.0,
                         height: 55.0,
                         decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 90, 56, 253),
+                          color: const Color.fromARGB(255, 44, 75, 190),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: TextButton(
@@ -189,7 +189,7 @@ class _CardListState extends State<CardList> {
                       errorBuilder: (context, error, stackTrace) {
                         return const Icon(Icons.info_outline,
                             size: 40.0,
-                            color: Color.fromARGB(180, 90, 56, 253));
+                            color: Color.fromARGB(180, 44, 75, 190));
                       },
                     ),
                     const SizedBox(height: 10),

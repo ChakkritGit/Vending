@@ -19,7 +19,7 @@ class HeaderLoginWidget extends StatelessWidget {
               style: TextStyle(
                   fontSize: 72.0,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 90, 56, 253))),
+                  color: Color.fromARGB(255, 44, 75, 190))),
           const SizedBox(height: 10.0),
           const Text('Automated medicine dispensing machine',
               style: TextStyle(
