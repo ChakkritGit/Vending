@@ -506,7 +506,7 @@ class _DispensePageState extends State<DispensePage> {
                 backgroundColor: Colors.white,
                 centerTitle: false,
                 floating: true,
-                systemOverlayStyle: SystemUiOverlayStyle.light,
+                systemOverlayStyle: SystemUiOverlayStyle.dark,
                 flexibleSpace: FlexibleSpaceBar(
                   background: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 16.0, sigmaY: 16.0),

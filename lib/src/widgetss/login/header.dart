@@ -7,7 +7,7 @@ class HeaderLoginWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
-      margin: const EdgeInsets.only(left: 110.0, bottom: 30.0),
+      margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.145, bottom: 30.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

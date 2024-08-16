@@ -74,7 +74,10 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
             borderRadius: BorderRadius.circular(18.0),
           ),
           child: TextFormField(
-            style: const TextStyle(fontSize: 24.0),
+            style: const TextStyle(
+              fontSize: 24.0,
+              color: Color.fromARGB(255, 110, 110, 110),
+            ),
             controller: username,
             validator: (value) {
               if (value!.isEmpty) {
@@ -87,7 +90,10 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
               icon: Icon(Icons.person),
               border: InputBorder.none,
               hintText: 'Username',
-              hintStyle: TextStyle(fontSize: 20.0),
+              hintStyle: TextStyle(
+                fontSize: 20.0,
+                color: Color.fromARGB(255, 110, 110, 110),
+              ),
               errorStyle: TextStyle(fontSize: 18.0),
             ),
           ),
@@ -102,7 +108,10 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
             borderRadius: BorderRadius.circular(18.0),
           ),
           child: TextFormField(
-            style: const TextStyle(fontSize: 24.0),
+            style: const TextStyle(
+              fontSize: 24.0,
+              color: Color.fromARGB(255, 110, 110, 110),
+            ),
             controller: password,
             validator: (value) {
               if (value!.isEmpty) {
@@ -116,7 +125,10 @@ class _InputLoginWidgetState extends State<InputLoginWidget> {
                 icon: const Icon(Icons.lock),
                 border: InputBorder.none,
                 hintText: 'Password',
-                hintStyle: const TextStyle(fontSize: 20.0),
+                hintStyle: const TextStyle(
+                  fontSize: 20.0,
+                  color: Color.fromARGB(255, 110, 110, 110),
+                ),
                 errorStyle: const TextStyle(fontSize: 18.0),
                 suffixIcon: IconButton(
                     alignment: Alignment.center,
