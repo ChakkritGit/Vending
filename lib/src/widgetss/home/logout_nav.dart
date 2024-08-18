@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vending_machine/src/widgetss/home/dialog_logout.dart';
 
 class LogoutNavHome extends StatelessWidget {
-  const LogoutNavHome({super.key, required this.scrolled});
-  final bool scrolled;
+  const LogoutNavHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class LogoutNavHome extends StatelessWidget {
       ),
       child: IconButton(
         iconSize: 48.0,
-        color: scrolled ? Colors.red : Colors.white,
+        color: Colors.white,
         icon: const Icon(Icons.logout),
         onPressed: () => showDialog<String>(
             context: context,

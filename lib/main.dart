@@ -7,13 +7,12 @@ import 'package:vending_machine/src/bloc/serial_data_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString('token');
 
   final serialDataBloc =
       BlocProvider<SerialDataBloc>(create: (context) => SerialDataBloc());
-
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
   runApp(AnnotatedRegion(
       value: const SystemUiOverlayStyle(

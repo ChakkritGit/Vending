@@ -13,4 +13,4 @@ flutter_native_splash:
     image_dark: lib/src/assets/images/Thanes_Logo.png
     icon_background_color_dark: "#121212"
 
-  web: false
+  web: true
