@@ -10,6 +10,7 @@ class InventoryEdit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         flexibleSpace: FlexibleSpaceBar(
           background: BackdropFilter(
@@ -44,7 +45,7 @@ class InventoryEdit extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            height: 80.0,
+            height: 100.0,
             margin: const EdgeInsets.all(10.0),
             padding:
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
@@ -86,7 +87,7 @@ class InventoryEdit extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            height: 80.0,
+            height: 100.0,
             margin: const EdgeInsets.all(10.0),
             padding:
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),

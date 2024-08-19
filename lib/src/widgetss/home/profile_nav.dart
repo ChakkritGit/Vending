@@ -22,7 +22,7 @@ class ProfileNavHome extends StatelessWidget {
             child: CircleAvatar(
               radius: 40.0,
               backgroundImage:
-                  const AssetImage('lib/src/assets/images/profile.png'),
+                  const AssetImage('lib/src/assets/images/profile3.png'),
               onBackgroundImageError: (error, stackTrace) =>
                   const Icon(Icons.person),
             ),

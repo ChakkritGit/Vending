@@ -1,11 +1,23 @@
 import 'dart:ui';
-import 'package:flutter/material.dart';
 
-class InventoryAddItem extends StatelessWidget {
-  const InventoryAddItem({super.key});
+import 'package:flutter/material.dart';
+import 'package:vending_machine/src/models/model_users.dart';
+
+class EditUsers extends StatefulWidget {
+  const EditUsers({super.key, required this.users});
+  final Users users;
 
   @override
+  State<EditUsers> createState() => _EditUsersState();
+}
+
+class _EditUsersState extends State<EditUsers> {
+  @override
   Widget build(BuildContext context) {
+    const List<String> list = <String>['User', 'Admin'];
+    // ignore: unused_local_variable
+    String dropdownValue = list.first;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -25,7 +37,7 @@ class InventoryAddItem extends StatelessWidget {
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text('Add medicine'),
+        title: const Text('edit user'),
         centerTitle: true,
         toolbarHeight: 100.0,
         actions: [
@@ -54,6 +66,7 @@ class InventoryAddItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(18.0),
             ),
             child: TextFormField(
+              initialValue: widget.users.displayName,
               style: const TextStyle(
                 fontSize: 24.0,
                 color: Color.fromARGB(255, 110, 110, 110),
@@ -61,14 +74,14 @@ class InventoryAddItem extends StatelessWidget {
               // controller: username,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter medicine name';
+                  return 'Please enter name';
                 }
                 return null;
               },
               decoration: const InputDecoration(
                 iconColor: Color.fromARGB(255, 110, 110, 110),
                 icon: Icon(
-                  Icons.medication,
+                  Icons.person,
                   size: 32.0,
                 ),
                 border: InputBorder.none,
@@ -95,6 +108,7 @@ class InventoryAddItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(18.0),
             ),
             child: TextFormField(
+              initialValue: widget.users.role.toString(),
               style: const TextStyle(
                 fontSize: 24.0,
                 color: Color.fromARGB(255, 110, 110, 110),
@@ -102,14 +116,14 @@ class InventoryAddItem extends StatelessWidget {
               // controller: username,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter medicine location';
+                  return 'Please enter role';
                 }
                 return null;
               },
               decoration: const InputDecoration(
                 iconColor: Color.fromARGB(255, 110, 110, 110),
                 icon: Icon(
-                  Icons.flourescent_outlined,
+                  Icons.roller_shades,
                   size: 32.0,
                 ),
                 border: InputBorder.none,
@@ -122,6 +136,26 @@ class InventoryAddItem extends StatelessWidget {
               ),
             ),
           ),
+          Container(
+            width: double.infinity,
+            // margin: const EdgeInsets.all(10.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            // alignment: Alignment.centerLeft,
+            child: DropdownMenu<String>(
+              initialSelection: list.first,
+              onSelected: (String? value) {
+                // This is called when the user selects an item.
+                setState(() {
+                  dropdownValue = value!;
+                });
+              },
+              dropdownMenuEntries:
+                  list.map<DropdownMenuEntry<String>>((String value) {
+                return DropdownMenuEntry<String>(value: value, label: value);
+              }).toList(),
+            ),
+          )
         ],
       ),
     );

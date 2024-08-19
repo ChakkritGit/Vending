@@ -402,6 +402,7 @@ class ManageInventory extends StatelessWidget {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         flexibleSpace: FlexibleSpaceBar(
           background: BackdropFilter(

@@ -1,4 +1,4 @@
-package com.example.vending_machine
+package com.thanes.vending
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -7,7 +7,9 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios_new_outlined,
@@ -29,12 +31,19 @@ class SettingsPage extends StatelessWidget {
               ),
               title: const Row(
                 children: [
-                  Icon(Icons.medical_services_outlined),
+                  Icon(
+                    Icons.medical_services_outlined,
+                    size: 32.0,
+                  ),
                   SizedBox(width: 10),
                   Text('Manage Inventory'),
                 ],
               ),
-              trailing: const Icon(Icons.arrow_forward_ios),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 32.0,
+                color: Colors.grey,
+              ),
             ),
             ListTile(
               onTap: () => Navigator.pushNamed(
@@ -43,12 +52,19 @@ class SettingsPage extends StatelessWidget {
               ),
               title: const Row(
                 children: [
-                  Icon(Icons.account_circle_outlined),
+                  Icon(
+                    Icons.account_circle_outlined,
+                    size: 32.0,
+                  ),
                   SizedBox(width: 10),
                   Text('Manage Users'),
                 ],
               ),
-              trailing: const Icon(Icons.arrow_forward_ios),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 32.0,
+                color: Colors.grey,
+              ),
             ),
             const Padding(
               padding: EdgeInsets.all(10.0),
@@ -71,11 +87,19 @@ class SettingsPage extends StatelessWidget {
             ),
             const ListTile(
               title: Text('Privacy Policy'),
-              trailing: Icon(Icons.arrow_forward_ios),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 32.0,
+                color: Colors.grey,
+              ),
             ),
             const ListTile(
               title: Text('Terms of Service'),
-              trailing: Icon(Icons.arrow_forward_ios),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 32.0,
+                color: Colors.grey,
+              ),
             ),
           ],
         ),

@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                     topRight: Radius.circular(70.0),
                   ),
                   child: Container(
-                    height: MediaQuery.of(context).size.height - 270.0,
+                    height: MediaQuery.of(context).size.height * 0.8,
                     color: Colors.white,
                     child: _pageState == 1
                         ? const DispensePage()
