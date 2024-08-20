@@ -131,11 +131,11 @@ class _HomePageState extends State<HomePage> {
               sliver: SliverToBoxAdapter(
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(70.0),
-                    topRight: Radius.circular(70.0),
+                    topLeft: Radius.circular(40.0),
+                    topRight: Radius.circular(40.0),
                   ),
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 0.8,
+                    height: MediaQuery.of(context).size.height * 0.86,
                     color: Colors.white,
                     child: _pageState == 1
                         ? const DispensePage()

@@ -37,12 +37,18 @@ class _CardListState extends State<CardList> {
   }
 
   void _showCardDetails(
-      String cardText, int colNum, int rowNum, int stockNum, int box) {
+      String cardText, int colNum, int rowNum, int stockNum, int box, int qty) {
     showModalBottomSheet(
       backgroundColor: Colors.white,
       sheetAnimationStyle: AnimationStyle(
           curve: const ElasticInOutCurve(5.0),
           duration: const Duration(milliseconds: 300)),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30.0),
+          topRight: Radius.circular(30.0),
+        ),
+      ),
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
@@ -78,6 +84,7 @@ class _CardListState extends State<CardList> {
                     0x00,
                     stockNumsend
                   ];
+
                   writeSerialData(data);
                   Navigator.pop(context);
                 }
@@ -85,7 +92,7 @@ class _CardListState extends State<CardList> {
                 return Container(
                   padding: const EdgeInsets.all(16.0),
                   // width: 700.0,
-                  height: 320.0,
+                  height: 350.0,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -99,6 +106,13 @@ class _CardListState extends State<CardList> {
                       const SizedBox(height: 5.0),
                       Text(
                         'No: ${box.toString()}',
+                        style: const TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                      const SizedBox(height: 5.0),
+                      Text(
+                        'Remaining: ${qty.toString()}',
                         style: const TextStyle(
                           fontSize: 24,
                         ),
@@ -176,7 +190,34 @@ class _CardListState extends State<CardList> {
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(double.infinity, 50),
                           ),
-                          onPressed: () => delivery(stockNum),
+                          onPressed: () => {
+                            if (_quantity > qty)
+                              {
+                                _quantity = qty,
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.white,
+                                      title: const Text('Error'),
+                                      content: const Text(
+                                          'The quantity is greater than the stock amount!'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text('OK'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                                setState(() {})
+                              }
+                            else
+                              {delivery(stockNum)}
+                          },
                           child: const Icon(
                             Icons.send,
                             color: Colors.white,
@@ -208,8 +249,13 @@ class _CardListState extends State<CardList> {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3.0),
           child: GestureDetector(
-            onTap: () => _showCardDetails(medicine.name!, widget.indexCol,
-                index, medicine.numberStock!, medicine.numberStock!),
+            onTap: () => _showCardDetails(
+                medicine.name!,
+                widget.indexCol,
+                index,
+                medicine.numberStock!,
+                medicine.numberStock!,
+                medicine.quantity!),
             child: SizedBox(
               width: 240,
               height: 285,

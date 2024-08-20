@@ -11,19 +11,27 @@ class InventoryAddAmount extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios_new_outlined,
+            color: Colors.black,
             size: 38.0,
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text(medicine.name.toString()),
+        title: Text(
+          medicine.name.toString(),
+          style: const TextStyle(
+            color: Colors.black,
+          ),
+        ),
         centerTitle: true,
         toolbarHeight: 100.0,
         actions: [
           IconButton(
+            color: Colors.black,
             icon: const Icon(Icons.save_outlined),
             iconSize: 48.0,
             onPressed: () {

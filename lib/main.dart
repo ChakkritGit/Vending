@@ -14,7 +14,8 @@ void main() async {
   final serialDataBloc =
       BlocProvider<SerialDataBloc>(create: (context) => SerialDataBloc());
 
-  runApp(AnnotatedRegion(
+  runApp(
+    AnnotatedRegion(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
@@ -24,5 +25,7 @@ void main() async {
       child: MultiBlocProvider(
         providers: [serialDataBloc],
         child: App(token: token),
-      )));
+      ),
+    ),
+  );
 }

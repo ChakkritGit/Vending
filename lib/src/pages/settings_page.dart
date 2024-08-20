@@ -9,19 +9,27 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_ios_new_outlined,
             size: 38.0,
+            color: Colors.black,
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text('Settings'),
+        title: const Text(
+          'Settings',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
         centerTitle: true,
         toolbarHeight: 100.0,
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 10.0),
         child: Column(
           children: [
             ListTile(
@@ -58,6 +66,27 @@ class SettingsPage extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   Text('Manage Users'),
+                ],
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 32.0,
+                color: Colors.grey,
+              ),
+            ),
+            ListTile(
+              onTap: () => Navigator.pushNamed(
+                context,
+                custom_route.Route.report,
+              ),
+              title: const Row(
+                children: [
+                  Icon(
+                    Icons.document_scanner,
+                    size: 32.0,
+                  ),
+                  SizedBox(width: 10),
+                  Text('Report'),
                 ],
               ),
               trailing: const Icon(

@@ -20,16 +20,14 @@ class DialogStatus extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Expanded(
-                    child: Image.asset(
-                      'lib/src/assets/images/dispense_banner.gif',
-                      width: 400.0,
-                      fit: BoxFit.none,
-                    ),
+                  Image.asset(
+                    'lib/src/assets/images/dispense_banner.gif',
+                    width: 300.0,
+                    fit: BoxFit.none,
                   ),
                   const SizedBox(height: 5.0),
                   const Text(
-                    'Dispensing',
+                    'Dispensing...',
                     style: TextStyle(
                       fontSize: 42.0,
                       fontWeight: FontWeight.bold,

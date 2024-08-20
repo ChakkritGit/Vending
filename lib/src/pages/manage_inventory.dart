@@ -404,6 +404,7 @@ class ManageInventory extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         flexibleSpace: FlexibleSpaceBar(
           background: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 100.0, sigmaY: 100.0),
@@ -417,128 +418,143 @@ class ManageInventory extends StatelessWidget {
           icon: const Icon(
             Icons.arrow_back_ios_new_outlined,
             size: 38.0,
+            color: Colors.black,
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text('Manage Inventory'),
+        title: const Text(
+          'Manage Inventory',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
         centerTitle: true,
         toolbarHeight: 100.0,
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: const EdgeInsets.only(top: 10.0, bottom: 120.0),
-            sliver: SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: stockModel.stock?.map((stock) {
-                      if (stock.medicines == null || stock.medicines!.isEmpty) {
-                        return Container(); // Return an empty container if there are no medicines
-                      }
+      body: NotificationListener(
+        onNotification: (OverscrollIndicatorNotification overScroll) {
+          overScroll.disallowIndicator();
+          return false;
+        },
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 120.0),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: stockModel.stock?.map((stock) {
+                        if (stock.medicines == null ||
+                            stock.medicines!.isEmpty) {
+                          return Container(); // Return an empty container if there are no medicines
+                        }
 
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: stock.medicines!.map((medicine) {
-                          return Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: GestureDetector(
-                              onTap: () {
-                                // เมื่อกดการ์ดให้เปิดไปยังหน้าใหม่พร้อมส่งข้อมูลไปด้วย
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        InventoryEdit(medicine: medicine),
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: stock.medicines!.map((medicine) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  // เมื่อกดการ์ดให้เปิดไปยังหน้าใหม่พร้อมส่งข้อมูลไปด้วย
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          InventoryEdit(medicine: medicine),
+                                    ),
+                                  );
+                                },
+                                child: Card(
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                );
-                              },
-                              child: Card(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                margin:
-                                    const EdgeInsets.symmetric(vertical: 10.0),
-                                child: SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(15.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Image.asset(
-                                              medicine.images.toString(),
-                                              height: 100.0,
-                                              width: 100.0,
-                                              fit: BoxFit.contain,
-                                            ),
-                                            const SizedBox(width: 30.0),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  medicine.name.toString(),
+                                  margin: const EdgeInsets.symmetric(
+                                      vertical: 10.0),
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 1.0,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Image.asset(
+                                                medicine.images.toString(),
+                                                height: 100.0,
+                                                width: 100.0,
+                                                fit: BoxFit.contain,
+                                              ),
+                                              const SizedBox(width: 30.0),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    medicine.name.toString(),
+                                                    style: const TextStyle(
+                                                      fontSize: 28.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 10.0),
+                                                  Text(
+                                                    'จำนวน: ${medicine.quantity}',
+                                                    style: const TextStyle(
+                                                        fontSize: 24.0),
+                                                  ),
+                                                  const SizedBox(height: 10.0),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 30.0),
+                                                child: Text(
+                                                  medicine.numberStock
+                                                      .toString(),
                                                   style: const TextStyle(
-                                                    fontSize: 28.0,
+                                                    color: Color.fromARGB(
+                                                        100, 110, 110, 110),
+                                                    fontSize: 64.0,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                const SizedBox(height: 10.0),
-                                                Text(
-                                                  'จำนวน: ${medicine.quantity}',
-                                                  style: const TextStyle(
-                                                      fontSize: 24.0),
-                                                ),
-                                                const SizedBox(height: 10.0),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 30.0),
-                                              child: Text(
-                                                medicine.numberStock.toString(),
-                                                style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      100, 110, 110, 110),
-                                                  fontSize: 64.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
                                               ),
-                                            ),
-                                            IconButton(
-                                              iconSize: 68.0,
-                                              color: Colors.red,
-                                              onPressed: () {},
-                                              icon: const Icon(Icons
-                                                  .delete_forever_outlined),
-                                            )
-                                          ],
-                                        )
-                                      ],
+                                              IconButton(
+                                                iconSize: 68.0,
+                                                color: Colors.red,
+                                                onPressed: () {},
+                                                icon: const Icon(Icons
+                                                    .delete_forever_outlined),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        }).toList(),
-                      );
-                    }).toList() ??
-                    [],
+                            );
+                          }).toList(),
+                        );
+                      }).toList() ??
+                      [],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,

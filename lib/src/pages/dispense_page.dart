@@ -90,7 +90,7 @@ class _DispensePageState extends State<DispensePage> {
             },
             {
               "name": "Lisinopril",
-              "quantity": 12,
+              "quantity": 7,
               "images": "lib/src/assets/images/medicinces/Lisinopril.jpg",
               "numberStock": 10
             }
@@ -154,7 +154,7 @@ class _DispensePageState extends State<DispensePage> {
             },
             {
               "name": "Lisinopril",
-              "quantity": 12,
+              "quantity": 7,
               "images": "lib/src/assets/images/medicinces/Lisinopril.jpg",
               "numberStock": 20
             }
@@ -218,7 +218,7 @@ class _DispensePageState extends State<DispensePage> {
             },
             {
               "name": "Lisinopril",
-              "quantity": 12,
+              "quantity": 7,
               "images": "lib/src/assets/images/medicinces/Lisinopril.jpg",
               "numberStock": 30
             }
@@ -282,7 +282,7 @@ class _DispensePageState extends State<DispensePage> {
             },
             {
               "name": "Lisinopril",
-              "quantity": 12,
+              "quantity": 7,
               "images": "lib/src/assets/images/medicinces/Lisinopril.jpg",
               "numberStock": 40
             }
@@ -346,7 +346,7 @@ class _DispensePageState extends State<DispensePage> {
             },
             {
               "name": "Lisinopril",
-              "quantity": 12,
+              "quantity": 7,
               "images": "lib/src/assets/images/medicinces/Lisinopril.jpg",
               "numberStock": 50
             }
@@ -410,7 +410,7 @@ class _DispensePageState extends State<DispensePage> {
             },
             {
               "name": "Lisinopril",
-              "quantity": 12,
+              "quantity": 7,
               "images": "lib/src/assets/images/medicinces/Lisinopril.jpg",
               "numberStock": 60
             }
@@ -434,22 +434,34 @@ class _DispensePageState extends State<DispensePage> {
           dialogContext = null;
         }
       },
-      child: CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: const EdgeInsets.only(top: 10.0),
-            sliver: SliverToBoxAdapter(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Column(
-                    children: List.generate(
-                        stockModel.stock!.length,
-                        (index) =>
-                            CardList(stockModel: stockModel, indexCol: index))),
+      child: NotificationListener(
+        onNotification: (OverscrollIndicatorNotification overScroll) {
+          overScroll.disallowIndicator();
+          return false;
+        },
+        child: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.only(top: 10.0),
+              sliver: SliverToBoxAdapter(
+                child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        Column(
+                          children: List.generate(
+                            stockModel.stock!.length,
+                            (index) => CardList(
+                                stockModel: stockModel, indexCol: index),
+                          ),
+                        ),
+                      ],
+                    )),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

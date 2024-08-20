@@ -397,108 +397,117 @@ class InventoryPage extends StatelessWidget {
     };
     final StockModel stockModel = StockModel.fromJson(json);
 
-    return CustomScrollView(
-      slivers: [
-        SliverPadding(
-          padding: const EdgeInsets.only(top: 10.0),
-          sliver: SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: stockModel.stock?.map((stock) {
-                    if (stock.medicines == null || stock.medicines!.isEmpty) {
-                      return Container(); // Return an empty container if there are no medicines
-                    }
+    return NotificationListener(
+        onNotification: (OverscrollIndicatorNotification overScroll) {
+          overScroll.disallowIndicator();
+          return false;
+        },
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.only(top: 10.0),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: stockModel.stock?.map((stock) {
+                        if (stock.medicines == null ||
+                            stock.medicines!.isEmpty) {
+                          return Container(); // Return an empty container if there are no medicines
+                        }
 
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: stock.medicines!.map((medicine) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: GestureDetector(
-                            onTap: () {
-                              // เมื่อกดการ์ดให้เปิดไปยังหน้าใหม่พร้อมส่งข้อมูลไปด้วย
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      InventoryAddAmount(medicine: medicine),
-                                ),
-                              );
-                            },
-                            child: Card(
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              margin:
-                                  const EdgeInsets.symmetric(vertical: 10.0),
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 1.0,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: stock.medicines!.map((medicine) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  // เมื่อกดการ์ดให้เปิดไปยังหน้าใหม่พร้อมส่งข้อมูลไปด้วย
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => InventoryAddAmount(
+                                          medicine: medicine),
+                                    ),
+                                  );
+                                },
+                                child: Card(
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  margin: const EdgeInsets.symmetric(
+                                      vertical: 10.0),
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 1.0,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Image.asset(
-                                            medicine.images.toString(),
-                                            height: 100.0,
-                                            width: 100.0,
-                                            fit: BoxFit.contain,
-                                          ),
-                                          const SizedBox(width: 30.0),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                          Row(
                                             children: [
-                                              Text(
-                                                medicine.name.toString(),
-                                                style: const TextStyle(
-                                                  fontSize: 28.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                              Image.asset(
+                                                medicine.images.toString(),
+                                                height: 100.0,
+                                                width: 100.0,
+                                                fit: BoxFit.contain,
                                               ),
-                                              const SizedBox(height: 10.0),
-                                              Text(
-                                                'จำนวน: ${medicine.quantity}',
-                                                style: const TextStyle(
-                                                    fontSize: 24.0),
+                                              const SizedBox(width: 30.0),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    medicine.name.toString(),
+                                                    style: const TextStyle(
+                                                      fontSize: 28.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 10.0),
+                                                  Text(
+                                                    'จำนวน: ${medicine.quantity}',
+                                                    style: const TextStyle(
+                                                        fontSize: 24.0),
+                                                  ),
+                                                  const SizedBox(height: 10.0),
+                                                ],
                                               ),
-                                              const SizedBox(height: 10.0),
                                             ],
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 30.0),
+                                            child: Text(
+                                              medicine.numberStock.toString(),
+                                              style: const TextStyle(
+                                                color: Color.fromARGB(
+                                                    100, 110, 110, 110),
+                                                fontSize: 64.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 30.0),
-                                        child: Text(
-                                          medicine.numberStock.toString(),
-                                          style: const TextStyle(
-                                            color: Color.fromARGB(
-                                                100, 110, 110, 110),
-                                            fontSize: 64.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
+                            );
+                          }).toList(),
                         );
-                      }).toList(),
-                    );
-                  }).toList() ??
-                  [],
+                      }).toList() ??
+                      [],
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
-    );
+          ],
+        ));
   }
 }
