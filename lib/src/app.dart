@@ -46,22 +46,27 @@ class _AppState extends State<App> {
         List<String> resData = data.map((e) => e.toRadixString(16)).toList();
         String res = resData.join(',');
         if (res == 'fa,fb,41,0,40') {
+          // ignore: use_build_context_synchronously
           final state = context.read<SerialDataBloc>().state;
           if (state.writeData.isEmpty) {
             port.write(Uint8List.fromList([0xfa, 0xfb, 0x42, 0x00, 0x43]));
           } else {
             port.write(Uint8List.fromList(state.writeData));
             debugPrint('Sending Data, PackNo: ${state.running.toString()}');
+            // ignore: use_build_context_synchronously
             context.read<SerialDataBloc>().add(const SerialDataWrite([]));
             if (state.running == 255) {
+              // ignore: use_build_context_synchronously
               context.read<SerialDataBloc>().add(SerialDataRunningReset());
             } else {
+              // ignore: use_build_context_synchronously
               context.read<SerialDataBloc>().add(SerialDataRunning());
             }
           }
         } else if (res == 'fa,fb,42,0,43') {
           debugPrint('ACK from Machine');
           setState(() => machineStatus = "Pending");
+          // ignore: use_build_context_synchronously
           context
               .read<SerialDataBloc>()
               .add(const SerialDataMachineStatusDelivery(true));
