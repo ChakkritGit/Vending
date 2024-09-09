@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vending_machine/src/bloc/serial_data_bloc.dart';
@@ -73,19 +74,47 @@ class _CardListState extends State<CardList> {
                 }
 
                 void delivery(int stockNumsend) {
-                  List<int> data = [
-                    0xfa,
-                    0xfb,
-                    0x06,
-                    0x05,
-                    state.running,
-                    0x01,
-                    0x01,
-                    0x00,
-                    stockNumsend
-                  ];
+                  var floor = 0;
+                  switch (stockNumsend) {
+                    case <= 10:
+                      floor = 600;
+                      break;
+                    case <= 20:
+                      floor = 500;
+                      break;
+                    case <= 30:
+                      floor = 400;
+                      break;
+                    case <= 40:
+                      floor = 300;
+                      break;
+                    case <= 50:
+                      floor = 200;
+                      break;
+                    case <= 60:
+                      floor = 100;
+                      break;
+                    default:
+                      floor = 0;
+                      break;
+                  }
 
-                  writeSerialData(data);
+                  if (kDebugMode) {
+                    print(floor);
+                  }
+                  // List<int> data = [
+                  //   0xfa,
+                  //   0xfb,
+                  //   0x06,
+                  //   0x05,
+                  //   state.running,
+                  //   0x01,
+                  //   0x01,
+                  //   0x00,
+                  //   stockNumsend
+                  // ];
+
+                  // writeSerialData(data);
                   Navigator.pop(context);
                 }
 
